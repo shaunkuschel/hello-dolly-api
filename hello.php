@@ -79,4 +79,15 @@ function dolly_css() {
 
 add_action( 'admin_head', 'dolly_css' );
 
-?>
+// REST API support
+function hellodollyapi() {
+	register_rest_route( 
+		'hellodolly/v1', '/lyric', 
+			array(
+			'methods' => 'GET',
+			'callback' => 'hello_dolly_get_lyric',
+			) 
+	);
+}
+
+add_action( 'rest_api_init', 'hellodollyapi' );
